@@ -1,10 +1,12 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateCurrency } from '../redux/reducers/items'
+import { updateSorting } from '../redux/reducers/items'
 
 function Navbar() {
 
   const currency = useSelector((s) => s.items.currency)
+  // const sortBy = useSelector((s) => s.items.sortBy)
 
   const dispatch = useDispatch()
 
@@ -44,12 +46,18 @@ function Navbar() {
           </div>
         </div>
         <div className="text-sm lg:flex-grow mr-6">
-          <span className="tracking-tight text-xl text-white mr-2">Sort</span>
+          <span className="tracking-tight text-xl text-white mr-2">Sort </span>
           <div className="inline-flex">
-            <button className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-l">
+            <button
+              className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+              onClick={ (() => dispatch(updateSorting('description'))) }
+            >
               By price
             </button>
-            <button className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+            <button
+              className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+              onClick={ (() => dispatch(updateSorting('title'))) }
+            >
               By name
             </button>
           </div>
