@@ -1,25 +1,33 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateItemCounter } from '../redux/reducers/items'
-import '../images/maxresdefault.jpg'
 
 const Items = () => {
   const item = useSelector((s) => s.items)
 
   const dispatch = useDispatch()
 
+  const currencyPrice = (currency, price) => {
+    if(currency === 'EUR') return (price * 1.2).toFixed(2)
+    else if(currency === 'CAD') return (price / 1.2).toFixed(2)
+    else return price
+  }
+
   return (
     <div className="flex flex-wrap m-6">
       {item.goods.map((it) => (
-        <div key={it.name} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-          <img className="w-full" src="/src/images/maxresdefault.jpg" alt="phone" />
+        <div key={it.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
+          <img className="w-full" src={it.image} alt={it.description} />
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{it.name}</div>
+            <div className="font-bold text-xl mb-2">{it.title}</div>
             <p className="text-gray-700 text-base">
-              {it.prize}
+              {it.description}
             </p>
             <p className="text-gray-700 text-base">
-              currency -
+              Currency - {item.currency}
+            </p>
+            <p className="text-gray-700 text-base">
+              Price: {currencyPrice(item.currency, it.price)}
             </p>
             <p className="text-gray-700 text-base">
               Items in the cart -
