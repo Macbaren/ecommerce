@@ -6,7 +6,7 @@ const UPDATE_SORTING = 'UPDATE_SORTING'
 const initialState = {
   goods: itemsjson,
   currency: 'USD',
-  sortBy: 'title',
+  sortBy: '',
   cartItems: 0,
   itemCounter: 0
 }

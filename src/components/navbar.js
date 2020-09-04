@@ -50,7 +50,7 @@ function Navbar() {
           <div className="inline-flex">
             <button
               className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-              onClick={ (() => dispatch(updateSorting('description'))) }
+              onClick={ (() => dispatch(updateSorting('price'))) }
             >
               By price
             </button>

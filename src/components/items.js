@@ -13,9 +13,17 @@ const Items = () => {
     else return price
   }
 
+  const sorting = (arr) => {
+    return sortBy === 'price'
+      ? arr.sort((a, b) => a[sortBy] - b[sortBy])
+      : sortBy === ''
+        ? arr
+        : arr.sort((a, b) => (a[sortBy]).localeCompare(b[sortBy]))
+  }
+
   return (
     <div className="flex flex-wrap m-6">
-      {item.goods.sort((a, b) => a[sortBy].localeCompare(b[sortBy]))
+      {sorting(item.goods)
         .map((it) => (
         <div key={it.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
           <img className="w-full" src={it.image} alt={it.description} />
