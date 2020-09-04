@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-const Items = () => {
-  const item = useSelector((s) => s.items)
+const BasketItems = () => {
+  const addedItems = useSelector((s) => s.basket.goods)
   const sortBy = useSelector((s) => s.items.sortBy)
 
   const dispatch = useDispatch()
@@ -15,7 +15,7 @@ const Items = () => {
 
   const sorting = (arr) => {
     return sortBy === 'price'
-      ? arr.sort((a, b) => a[sortBy] - b[sortBy])
+      ? arr.sort((a, b) => b[sortBy] - a[sortBy])
       : sortBy === ''
         ? arr
         : arr.sort((a, b) => (a[sortBy]).localeCompare(b[sortBy]))
@@ -23,22 +23,22 @@ const Items = () => {
 
   return (
     <div className="flex flex-wrap m-6">
-      {sorting(item.goods)
+      {sorting(addedItems)
         .map((it) => (
-        <div key={it.id} className="max-w-sm rounded overflow-hidden shadow-lg m-4">
-          <img className="w-full" src={it.image} alt={it.description} />
+        <div key={it.id} className="card max-w-sm rounded overflow-hidden shadow-lg m-4">
+          <img className="card__image w-full" src={it.image} alt={it.description} />
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{it.title}</div>
-            <p className="text-gray-700 text-base">
+            <div className="card__title font-bold text-xl mb-2">{it.title}</div>
+            <p className="card__description text-gray-700 text-base">
               {it.description}
             </p>
-            <p className="text-gray-700 text-base">
-              Currency - {item.currency}  {sortBy}
+            <p className="card__currency text-gray-700 text-base">
+              Currency - {addedItems.currency}
             </p>
-            <p className="text-gray-700 text-base">
-              Price: {currencyPrice(item.currency, it.price)}
+            <p className="card__price text-gray-700 text-base">
+              Price: {currencyPrice(addedItems.currency, it.price)}
             </p>
-            <p className="text-gray-700 text-base">
+            <p className="card__product-amount text-gray-700 text-base">
               Items in the cart -
             </p>
             <button
@@ -54,4 +54,4 @@ const Items = () => {
   )
 }
 
-export default Items
+export default BasketItems

@@ -1,19 +1,21 @@
-import React from 'react';
-import { Provider } from 'react-redux'
-
-import './styles/main.css'
-import Navbar from './components/navbar'
-import Items from './components/items'
-
-import store from './redux'
+import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import Main from './components/Main/Main'
+import Basket from './components/Basket/Basket'
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Navbar />
-      <Items />
-    </Provider>
-  );
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={() => <Main />} />
+          <Route exact path="/basket" component={() => <Basket />} />
+        </Switch>
+      </BrowserRouter>
+    </div>
+  )
 }
+
+App.propTypes = {}
 
 export default App
