@@ -1,3 +1,5 @@
+// import basketjson from '/JS projects/skillcrucialStudy/ecommerce/src/basket-items.json'
+
 const ADD_ITEM = 'ADD_ITEM'
 const UPDATE_CURRENCY = 'UPDATE_CURRENCY'
 const UPDATE_SORTING = 'UPDATE_SORTING'

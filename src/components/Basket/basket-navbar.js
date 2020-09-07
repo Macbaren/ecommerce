@@ -1,26 +1,39 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { updateCurrency } from '../../redux/reducers/items'
 import { updateSorting } from '../../redux/reducers/items'
 
 function BasketNavbar() {
 
   const currency = useSelector((s) => s.items.currency)
-  // const sortBy = useSelector((s) => s.items.sortBy)
+  const countItems = useSelector((s) => s.basket.basketGoods)
+
+  const totalCost = countItems.reduce((acc, rec) => {
+    return acc += currency === 'EUR'
+      ? Number.parseInt(rec.price) / 1.2
+      : currency === 'CAD'
+        ? Number.parseInt(rec.price) * 1.2
+        : Number.parseInt(rec.price)
+  }, 0).toFixed(2)
 
   const dispatch = useDispatch()
 
   return (
     <nav className="flex items-center justify-between flex-wrap bg-indigo-600 p-6">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="flex items-center flex-shrink-0 text-white mr-6"> 
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" height="2em" width="2em"viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
-        <a href="/" className="brand-name font-semibold text-3xl tracking-tight">Macbaren e-store Basket</a>
+        <Link to="/" className="brand-name flex-col font-semibold text-3xl ml-2 tracking-tight">
+          e-store
+          <br/>
+          Basket
+        </Link>
       </div>
-      <span className="order-count tracking-tight text-xl text-white mr-2">Items in the basket: </span>
+      <span className="order-count tracking-tight text-xl text-white mr-2">Items in the basket: {countItems.length}</span>
       <button className="bg-indigo-200 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 m-4 rounded">
-        <a href="/" className="text-xl text-gray-800 tracking-tight">Back to shopping</a>
+        <Link to="/" className="text-xl text-gray-800 tracking-tight">Back to shopping</Link>
       </button>
 
       <div className="block float-right lg:flex lg:items-right lg:w-auto">
@@ -64,7 +77,7 @@ function BasketNavbar() {
             </button>
           </div>
         </div>
-        <span className="tracking-tight text-xl text-white mr-2 ml-2">Total cost</span>
+          <span className="tracking-tight text-xl text-white mr-1 ml-1">Total cost {totalCost} {currency}</span>
         <div>
         </div>
       </div>
