@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 const BasketItems = () => {
-  const addedItems = useSelector((s) => s.basket.goods)
+  const addedItems = useSelector((s) => s.basket)
   const sortBy = useSelector((s) => s.items.sortBy)
 
   const dispatch = useDispatch()
@@ -23,7 +23,7 @@ const BasketItems = () => {
 
   return (
     <div className="flex flex-wrap m-6">
-      {sorting(addedItems)
+      {sorting(addedItems.basketGoods)
         .map((it) => (
         <div key={it.id} className="card max-w-sm rounded overflow-hidden shadow-lg m-4">
           <img className="card__image w-full" src={it.image} alt={it.description} />
