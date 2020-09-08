@@ -23,7 +23,7 @@ const Items = () => {
   }
 
   return (
-    <div className="flex flex-wrap m-6">
+    <div className="flex flex-wrap mt-40">
       {sorting(item.goods)
         .map((it) => (
         <div key={it.id} className="card max-w-sm rounded overflow-hidden shadow-lg m-4">

@@ -1,6 +1,7 @@
 // import basketjson from '/JS projects/skillcrucialStudy/ecommerce/src/basket-items.json'
 
 const ADD_ITEM = 'ADD_ITEM'
+const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_CURRENCY = 'UPDATE_CURRENCY'
 const UPDATE_SORTING = 'UPDATE_SORTING'
 
@@ -19,6 +20,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         basketGoods: [...state.basketGoods, action.newItem]
+      }
+    }
+
+    case REMOVE_ITEM: {
+      const index = state.basketGoods.indexOf(action.oldItem)
+      return {
+        ...state,
+        basketGoods: [...state.basketGoods.filter((it, ind) => ind !== index)]
       }
     }
 
@@ -43,6 +52,10 @@ export default (state = initialState, action) => {
 
 export function addItem(newItem) {
   return { type: ADD_ITEM, newItem }
+}
+
+export function removeItem(oldItem) {
+  return { type: REMOVE_ITEM, oldItem }
 }
 
 export function updateCurrency(currency) {
