@@ -9,14 +9,6 @@ function BasketNavbar() {
   const currency = useSelector((s) => s.items.currency)
   const countItems = useSelector((s) => s.basket.basketGoods)
 
-  const totalCost = countItems.reduce((acc, rec) => {
-    return acc += currency === 'EUR'
-      ? Number.parseInt(rec.price) / 1.2
-      : currency === 'CAD'
-        ? Number.parseInt(rec.price) * 1.2
-        : Number.parseInt(rec.price)
-  }, 0).toFixed(2)
-
   const dispatch = useDispatch()
 
   return (
@@ -76,9 +68,6 @@ function BasketNavbar() {
               By name
             </button>
           </div>
-        </div>
-          <span className="tracking-tight text-xl text-white mr-1 ml-1">Total cost {totalCost} {currency}</span>
-        <div>
         </div>
       </div>
     </nav>

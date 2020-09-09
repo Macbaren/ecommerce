@@ -1,13 +1,23 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeItem } from '../../redux/reducers/basket'
+import { removeItem, addItem } from '../../redux/reducers/basket'
 
 const BasketItems = () => {
 
+  const dispatch = useDispatch()
+
   const addedItems = useSelector((s) => s.basket)
   const sortBy = useSelector((s) => s.items.sortBy)
+  const currency = useSelector((s) => s.items.currency)
+  const countItems = useSelector((s) => s.basket.basketGoods)
 
-  const dispatch = useDispatch()
+  const totalCost = countItems.reduce((acc, rec) => {
+    return acc += currency === 'EUR'
+      ? Number.parseInt(rec.price) / 1.2
+      : currency === 'CAD'
+        ? Number.parseInt(rec.price) * 1.2
+        : Number.parseInt(rec.price)
+  }, 0).toFixed(2)
 
   const currencyPrice = (currency, price) => {
     if(currency === 'EUR') return (price * 1.2).toFixed(2)
@@ -24,12 +34,11 @@ const BasketItems = () => {
   }
 
   const sameItems = (arr, id) => {
-    return arr.filter(it => it.id === id).length
+    return arr.filter(it => it.id === id).length // display same items in one row
   }
 
   return (
-    <div className="flex flex-wrap mt-40 ml-6" >
-
+    <div className="flex flex-wrap mt-40 mb-20 ml-6" >
       <table className="table-fixed">
         <thead>
           <tr>
@@ -57,7 +66,7 @@ const BasketItems = () => {
               </td>
               <td className="border px-12 py-2">
                 <button
-                  className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
+                  className="product__remove bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
                   onClick={ (() => dispatch(removeItem(it))) }
                 >
                   <svg className="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/></svg>
@@ -67,6 +76,9 @@ const BasketItems = () => {
             </tr>))}
         </tbody>
       </table>
+      <nav className="total-amount flex fixed bottom-0 right-0 w-1/5 rounded text-xl text-white bg-indigo-500 bg-opacity-50 p-4 m-4">
+        Total amount: {totalCost} {currency}
+      </nav>
     </div>
   )
 }
