@@ -4,6 +4,7 @@ const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_CURRENCY = 'UPDATE_CURRENCY'
 const UPDATE_SORTING = 'UPDATE_SORTING'
+const UPDATE_CART_ITEMS = 'UPDATE_CART_ITEMS'
 
 const initialState = {
   basketGoods: [],
@@ -28,6 +29,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         basketGoods: [...state.basketGoods.filter((it, ind) => ind !== index)]
+      }
+    }
+
+    case UPDATE_CART_ITEMS: {
+      return {
+        ...state,
+        cartItems: state.basketGoods.filter(it => it === action.sameItems).length
       }
     }
 
@@ -56,6 +64,10 @@ export function addItem(newItem) {
 
 export function removeItem(oldItem) {
   return { type: REMOVE_ITEM, oldItem }
+}
+
+export function cartItems(sameItems) {
+  return { type: UPDATE_CART_ITEMS, sameItems }
 }
 
 export function updateCurrency(currency) {

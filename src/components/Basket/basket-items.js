@@ -62,7 +62,7 @@ const BasketItems = () => {
               <td className="border px-12 py-2">{currencyPrice(addedItems.currency, it.price)} {addedItems.currency}</td>
               <td className="border px-12 py-2">{sameItems(addedItems.basketGoods, it.id)}</td>
               <td className="border px-12 py-2">
-                {sameItems(addedItems.basketGoods, it.id) * currencyPrice(addedItems.currency, it.price)} {addedItems.currency}
+                {(sameItems(addedItems.basketGoods, it.id) * currencyPrice(addedItems.currency, it.price)).toFixed(2)} {addedItems.currency}
               </td>
               <td className="border px-12 py-2">
                 <button

@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { addItem } from '../../redux/reducers/basket'
+import { addItem, cartItems } from '../../redux/reducers/basket'
 
 const Items = () => {
   const item = useSelector((s) => s.items)
   const sortBy = useSelector((s) => s.items.sortBy)
+  const addedItems = useSelector((s) => s.basket)
 
   const dispatch = useDispatch()
 
@@ -20,6 +21,10 @@ const Items = () => {
       : sortBy === ''
         ? arr
         : arr.sort((a, b) => (a[sortBy]).localeCompare(b[sortBy]))
+  }
+
+  const sameItems = (arr, id) => {
+    return arr.filter(it => it.id === id).length // display same items in one row
   }
 
   return (
@@ -40,7 +45,7 @@ const Items = () => {
               Price: {currencyPrice(item.currency, it.price)}
             </p>
             <p className="card__product-amount text-gray-700 text-base">
-              Items in the cart -
+              Items in the cart - {sameItems(addedItems.basketGoods, it.id)}
             </p>
             <button
               className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center"
