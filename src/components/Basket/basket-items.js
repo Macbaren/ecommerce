@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeItem, addItem } from '../../redux/reducers/basket'
+import { removeItem } from '../../redux/reducers/basket'
 
 const BasketItems = () => {
 
