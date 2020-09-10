@@ -1,4 +1,4 @@
-import itemsjson from '/JS projects/skillcrucialStudy/ecommerce/src/items.json'
+import itemsjson from '/JS projects/skillcrucialStudy/ecommerce/src/redux/reducers/items.json'
 
 const UPDATE_CURRENCY = 'UPDATE_CURRENCY'
 const UPDATE_SORTING = 'UPDATE_SORTING'
