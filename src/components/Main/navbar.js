@@ -30,10 +30,10 @@ function Navbar() {
         <Link to="/basket" className="text-xl text-gray-800 tracking-tight">Go to the basket</Link>
       </button>
 
-      <div className="block float-right lg:flex lg:items-right lg:w-auto">
+      <div className="block float-right lg:flex lg:items-right lg:w-auto p-2">
         <div className="float-right mr-6 text-sm lg:flex-grow">
           <span className="tracking-tight text-xl text-white mr-2">Currency: {currency} / Switch </span>
-          <div className="inline-flex">
+          <div className="inline-flex my-2">
             <button
               className="bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-l"
               onClick={ (() => dispatch(updateCurrency('USD'))) }
@@ -56,7 +56,7 @@ function Navbar() {
         </div>
         <div className="text-sm lg:flex-grow mr-6">
           <span className="tracking-tight text-xl text-white mr-2">Sort </span>
-          <div className="inline-flex">
+          <div className="inline-flex my-2">
             <button
               className="sort-price bg-green-200 hover:bg-green-400 text-gray-800 font-bold py-2 px-4 rounded-l"
               onClick={ (() => dispatch(updateSorting('price'))) }

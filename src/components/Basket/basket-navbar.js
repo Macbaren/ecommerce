@@ -31,7 +31,7 @@ function BasketNavbar() {
       <div className="block float-right lg:flex lg:items-right lg:w-auto">
         <div className="float-right mr-6 text-sm lg:flex-grow">
           <span className="tracking-tight text-xl text-white mr-2">Currency: {currency} / Switch </span>
-          <div className="inline-flex">
+          <div className="inline-flex my-2">
             <button
               className="bg-indigo-200 hover:bg-indigo-400 text-gray-800 font-bold py-2 px-4 rounded-l"
               onClick={ (() => dispatch(updateCurrency('USD'))) }
@@ -52,7 +52,7 @@ function BasketNavbar() {
             </button>
           </div>
         </div>
-        <div className="text-sm lg:flex-grow mr-6">
+        <div className="text-sm lg:flex-grow my-2 mr-6">
           <span className="tracking-tight text-xl text-white mr-2">Sort </span>
           <div className="inline-flex">
             <button
