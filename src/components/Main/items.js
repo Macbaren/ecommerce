@@ -31,7 +31,7 @@ const Items = () => {
     <div className="flex flex-wrap relative mt-40">
       {sorting(item.goods)
         .map((it) => (
-        <div key={it.id} className="card max-w-sm rounded overflow-hidden shadow-lg m-4">
+        <div key={it.id} className="card max-w-sm rounded overflow-hidden bg-orange-100 shadow-lg m-4">
           <img className="card__image w-full" src={it.image} alt={it.description} />
           <div className="px-6 py-4">
             <div className="card__title font-bold text-xl mb-2">{it.title}</div>
