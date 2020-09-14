@@ -1,9 +1,7 @@
-// import basketjson from '/JS projects/skillcrucialStudy/ecommerce/src/basket-items.json'
-
 const ADD_ITEM = 'ADD_ITEM'
 const REMOVE_ITEM = 'REMOVE_ITEM'
 const UPDATE_CURRENCY = 'UPDATE_CURRENCY'
-const UPDATE_SORTING = 'UPDATE_SORTING'
+const UPDATE_SORTING_BASKET = 'UPDATE_SORTING_BASKET'
 const UPDATE_CART_ITEMS = 'UPDATE_CART_ITEMS'
 
 const initialState = {
@@ -46,7 +44,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case UPDATE_SORTING: {
+    case UPDATE_SORTING_BASKET: {
       return {
         ...state,
         sortBy: action.sortBy
@@ -75,5 +73,5 @@ export function updateCurrency(currency) {
 }
 
 export function updateSorting(sortBy) {
-  return { type: UPDATE_SORTING, sortBy }
+  return { type: UPDATE_SORTING_BASKET, sortBy }
 }

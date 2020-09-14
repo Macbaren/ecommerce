@@ -7,7 +7,7 @@ const BasketItems = () => {
   const dispatch = useDispatch()
 
   const addedItems = useSelector((s) => s.basket)
-  const sortBy = useSelector((s) => s.items.sortBy)
+  const sortBy = useSelector((s) => s.basket.sortBy)
   const currency = useSelector((s) => s.items.currency)
   const countItems = useSelector((s) => s.basket.basketGoods)
 
@@ -41,7 +41,7 @@ const BasketItems = () => {
     <div className="flex flex-wrap relative mt-40 mb-20 ml-6" >
       {countItems.length > 0
         ?
-        <table className="table-fixed bg-purple-100">
+        <table className="table-fixed rounded bg-purple-100 opacity-75">
           <thead>
             <tr>
               <th className="product__image w-1/4 px-12 py-2">Pic</th>

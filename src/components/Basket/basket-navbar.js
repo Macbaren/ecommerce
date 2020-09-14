@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { updateCurrency } from '../../redux/reducers/items'
-import { updateSorting } from '../../redux/reducers/items'
+import { updateSorting } from '../../redux/reducers/basket'
 
 function BasketNavbar() {
 
