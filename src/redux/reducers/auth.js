@@ -40,6 +40,7 @@ export function signIn() {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log('DATA', data)
         dispatch({ type: LOGIN, token: data.token });
       });
   };
